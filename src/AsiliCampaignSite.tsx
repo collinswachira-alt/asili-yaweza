@@ -172,7 +172,7 @@ const articles = [
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6">
-          {['candidates', 'values', 'vision', 'articles', 'vote', 'contact'].map((link) => (
+          {['candidates', 'values', 'vision', 'stand', 'vote', 'contact'].map((link) => (
             <a
               key={link}
               href={`#${link}`}
