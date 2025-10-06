@@ -182,6 +182,8 @@ const articles = [
             >
               {link === 'candidates'
                 ? 'Our Candidates'
+                : link === 'values'
+                ? 'Core Values'
                 : link === 'vision'
                 ? 'Our Vision'
                 : link === 'articles'
@@ -206,7 +208,7 @@ const articles = [
           animate={{ opacity: 1, y: 0 }}
           className="bg-red-600 text-white flex flex-col space-y-4 p-4 md:hidden mt-[72px]"
         >
-          {['Our Candidates', 'Our Vision', 'Our Stand', 'Vote Asili'].map((link, idx) => (
+          {['Our Candidates', 'Core Values', 'Our Vision', 'Our Stand', 'Vote Asili'].map((link, idx) => (
             <a key={idx} href={`#${link.toLowerCase().split(' ')[1]}`} onClick={() => setMenuOpen(false)}>
               {link}
             </a>
@@ -287,7 +289,7 @@ const articles = [
       </section>
 
       {/* Core Values & Trust Section */}
-        <section className="py-16 px-6 bg-gray-50 text-center">
+      <section id='values' className="py-16 px-6 bg-gray-50 text-center">
       <h3 className="text-3xl font-bold text-red-700 mb-4">Our Core Values</h3>
       <span
         ref={el}
