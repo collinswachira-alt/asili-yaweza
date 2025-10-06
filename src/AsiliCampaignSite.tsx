@@ -382,11 +382,11 @@ const articles = [
       </section>
 
       {/* Vote Section */}
-    <section id="vote" className="py-16 px-6 bg-white text-center">
+    <section className="py-16 px-6 bg-white text-center">
       <h3 className="text-2xl font-bold mb-6 text-red-700 flex items-center justify-center gap-2">
         <CheckCircle className="text-red-600" /> Pre-vote for Team Asili
       </h3>
-      <p className="text-gray-700 mb-6">Join the movement and amplify your voice.</p>
+      <p id="vote" className="text-gray-700 mb-6">Join the movement and amplify your voice.</p>
 
       <form
         onSubmit={handleRegister}
@@ -451,7 +451,7 @@ const articles = [
     </section>
 
       {/* Footer */}
-      <footer className="bg-red-700 text-white py-6 text-center text-sm">
+      <footer id="contact" className="bg-red-700 text-white py-6 text-center text-sm">
         <div className="flex justify-center space-x-6 mb-3 text-xl">
           <FaInstagram className="hover:text-yellow-300 cursor-pointer" />
           <FaTiktok className="hover:text-yellow-300 cursor-pointer" />
