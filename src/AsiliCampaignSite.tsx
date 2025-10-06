@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Typed from "typed.js";
 import axios from "axios";
 import { motion } from 'framer-motion';
-import { Menu, X, Users, CheckCircle } from 'lucide-react';
+import { Menu, X, Users, CheckCircle, MessageCircle } from 'lucide-react';
 import { FaInstagram, FaTiktok, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 
 export default function AsiliCampaignSite() {
@@ -122,6 +122,27 @@ useEffect(() => {
 }, [hasAnimated, voters]);
 
 
+  const candidates = [
+    {
+      name: "President",
+      desc: "Visionary leader committed to progress.",
+      img: "/president.jpg",
+      whatsapp: "https://wa.me/254757488364?text=Hello%20President%20Candidate%20Team%20Asili!",
+    },
+    {
+      name: "Vice President",
+      desc: "Dedicated to teamwork and excellence.",
+      img: "/vp.jpg",
+      whatsapp: "https://wa.me/254790600447?text=Hello%20Vice%20President%20Candidate%20Team%20Asili!",
+    },
+    {
+      name: "Secretary",
+      desc: "Organized, transparent, and service-oriented.",
+      img: "/sec.jpg",
+      whatsapp: "https://wa.me/254742930447?text=Hello%20Secretary%20Candidate%20Team%20Asili!",
+    },
+  ];
+
 const articles = [
   {
     id: 1,
@@ -227,67 +248,44 @@ const articles = [
         <p className="text-lg md:text-xl">Vote for leadership, integrity, and progress.</p>
       </section>
 
-            {/* Candidates */}
       <section id="candidates" className="py-16 px-6 bg-white text-center">
         <h3 className="text-2xl font-bold mb-10 text-red-700">Our Candidates</h3>
-      
+  
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Candidate 1: President */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition group"
-          >
-            <img
-              src="/president.jpg"
-              alt="President"
-              className="w-full h-96 object-cover transform group-hover:scale-105 transition duration-500"
-            />
-            <div className="absolute inset-0 flex flex-col justify-end text-white p-4 bg-gradient-to-t from-black/40 via-transparent">
-              <h4 className="font-semibold text-xl">President</h4>
-              <p className="text-sm">Visionary leader committed to progress.</p>
-            </div>
-          </motion.div>
-      
-          {/* Candidate 2: Vice President */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition group"
-          >
-            <img
-              src="/vp.jpg"
-              alt="Vice President"
-              className="w-full h-96 object-cover transform group-hover:scale-105 transition duration-500"
-            />
-            <div className="absolute inset-0 flex flex-col justify-end text-white p-4 bg-gradient-to-t from-black/40 via-transparent">
-              <h4 className="font-semibold text-xl">Vice President</h4>
-              <p className="text-sm">Dedicated to teamwork and excellence.</p>
-            </div>
-          </motion.div>
-      
-          {/* Candidate 3: Secretary */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition group"
-          >
-            <img
-              src="/sec.jpg"
-              alt="Secretary"
-              className="w-full h-96 object-cover transform group-hover:scale-105 transition duration-500"
-            />
-            <div className="absolute inset-0 flex flex-col justify-end text-white p-4 bg-gradient-to-t from-black/40 via-transparent">
-              <h4 className="font-semibold text-xl">Secretary</h4>
-              <p className="text-sm">Organized, transparent, and service-oriented.</p>
-            </div>
-          </motion.div>
+          {candidates.map((candidate, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 * (index + 1) }}
+              className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition group"
+            >
+              {/* Candidate Image */}
+              <img
+                src={candidate.img}
+                alt={candidate.name}
+                className="w-full h-96 object-cover transform group-hover:scale-105 transition duration-500"
+              />
+  
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 flex flex-col justify-end text-white p-4 bg-gradient-to-t from-black/50 via-transparent transition duration-500">
+                <h4 className="font-semibold text-xl">{candidate.name}</h4>
+                <p className="text-sm">{candidate.desc}</p>
+              </div>
+  
+              {/* WhatsApp Icon */}
+              <a
+                href={candidate.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-4 right-4 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transform md:opacity-0 md:group-hover:opacity-100 md:group-hover:scale-110 transition duration-300 md:transition-all flex items-center justify-center"
+                title={`Chat with ${candidate.name}`}
+              >
+                <FaWhatsapp className="w-6 h-6" />
+              </a>
+            </motion.div>
+          ))}
         </div>
       </section>
 
