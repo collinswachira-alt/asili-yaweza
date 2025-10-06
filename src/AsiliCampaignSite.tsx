@@ -7,7 +7,6 @@ import { FaInstagram, FaTiktok, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 
 export default function AsiliCampaignSite() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [apiCount, setApiCount] = useState(0);
   const el = useRef<HTMLSpanElement | null>(null);
   const [voters, setVoters] = useState<number>(0);
   const counterRef = useRef<HTMLDivElement | null>(null);
@@ -25,7 +24,6 @@ export default function AsiliCampaignSite() {
     useEffect(() => {
     axios.get("https://lupp.live/api/auth/asili/count").then((res) => {
       setVoters(res.data.count);
-      setApiCount(res.data.count);
     });
   }, []);
 
@@ -99,31 +97,29 @@ export default function AsiliCampaignSite() {
     return () => typed.destroy();
   }, []);
 
-  useEffect(() => {
-    if (apiCount === 0) return; // don't animate if count not loaded
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && !hasAnimated) {
+        let start = 0;
+        const interval = setInterval(() => {
+          start += Math.ceil(voters / 50); // smooth increment
+          if (start >= voters) {
+            start = voters;
+            clearInterval(interval);
+          }
+          setCount(start);
+        }, 20);
+        setHasAnimated(true);
+      }
+    },
+    { threshold: 0.5 }
+  );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          let start = 0;
-          const step = Math.ceil(apiCount / 50); // adjust for smoothness
-          const interval = setInterval(() => {
-            start += step;
-            if (start >= apiCount) {
-              start = apiCount;
-              clearInterval(interval);
-            }
-            setCount(start);
-          }, 20);
-          setHasAnimated(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
+  if (counterRef.current) observer.observe(counterRef.current);
 
-    if (counterRef.current) observer.observe(counterRef.current);
-    return () => observer.disconnect();
-  }, [apiCount, hasAnimated]);
+  return () => observer.disconnect();
+}, [hasAnimated, voters]);
 
 
 const articles = [
