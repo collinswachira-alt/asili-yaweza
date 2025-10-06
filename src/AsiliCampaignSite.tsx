@@ -453,7 +453,7 @@ const articles = [
         </div>
         <p>© {new Date().getFullYear()} Team Asili | C.U.E.A Elections</p>
       <p>
-        Made with love by{" "}
+        Made with 🤍 by{" "}
         <a
           href="https://wa.me/254115661943" 
           target="_blank"
