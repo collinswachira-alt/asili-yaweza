@@ -347,7 +347,16 @@ const articles = [
         ))}
       </div>
     </section>
-
+    <section className="py-6 px-6 bg-red-50 text-center">
+      <h3 className="text-2xl font-bold mb-4 text-red-700">Check Out Our Full Manifesto</h3>
+      <a
+        href="/team_asili_full_manifesto.pdf"
+        download
+        className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition inline-block"
+      >
+        Download PDF
+      </a>
+    </section>
       {/* YouTube Videos */}
       <section className="py-16 px-6 bg-red-50 text-center">
         <h3 className="text-2xl font-bold mb-6 text-red-700">Watch Our Campaign</h3>
