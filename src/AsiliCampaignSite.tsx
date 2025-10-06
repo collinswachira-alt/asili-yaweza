@@ -185,8 +185,10 @@ const articles = [
                 : link === 'vision'
                 ? 'Our Vision'
                 : link === 'articles'
-                ? 'Campaign Articles'
-                : 'Vote Asili'}
+                ? 'Our Stand'
+                : link === 'vote'
+                ? 'Vote Asili'
+                : link}
             </a>
           ))}
         </nav>
