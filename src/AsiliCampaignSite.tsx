@@ -462,7 +462,7 @@ const articles = [
           rel="noopener noreferrer"
           className="text-aqua underline hover:text-aqua-200"
         >
-          j3ftey
+          collinswachira-alt
         </a>
       </p>
       </footer>
