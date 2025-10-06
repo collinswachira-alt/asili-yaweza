@@ -19,6 +19,7 @@ export default function AsiliCampaignSite() {
   const [openArticle, setOpenArticle] = useState<number | null>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
     useEffect(() => {
     axios.get("https://lupp.live/api/auth/asili/count").then((res) => {
@@ -28,6 +29,11 @@ export default function AsiliCampaignSite() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    setRegNumber("");
+    setName("");
+
     try {
       const res = await axios.post("https://lupp.live/api/auth/asili/register", {
         regNumber,
@@ -35,10 +41,12 @@ export default function AsiliCampaignSite() {
       });
       setMessage(res.data.message);
       setVoters(res.data.count);
+      setLoading(false);
       setRegNumber("");
       setName("");
     } catch (err: any) {
       setMessage(err.response?.data?.message || "Error occurred");
+      setLoading(false);
     }
   };
 
@@ -89,28 +97,30 @@ export default function AsiliCampaignSite() {
     return () => typed.destroy();
   }, []);
 
-    useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          let start = 0;
-          const interval = setInterval(() => {
-            start += 10;
-            if (start >= voters) {
-              start = voters;
-              clearInterval(interval);
-            }
-            setCount(start);
-          }, 20);
-          setHasAnimated(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && !hasAnimated) {
+        let start = 0;
+        const interval = setInterval(() => {
+          start += Math.ceil(voters / 50); // smooth increment
+          if (start >= voters) {
+            start = voters;
+            clearInterval(interval);
+          }
+          setCount(start);
+        }, 20);
+        setHasAnimated(true);
+      }
+    },
+    { threshold: 0.5 }
+  );
 
-    if (counterRef.current) observer.observe(counterRef.current);
-    return () => observer.disconnect();
-  }, [hasAnimated]);
+  if (counterRef.current) observer.observe(counterRef.current);
+
+  return () => observer.disconnect();
+}, [hasAnimated, voters]);
+
 
 const articles = [
   {
@@ -287,7 +297,7 @@ const articles = [
         className="mt-10 text-center text-gray-800 text-lg font-medium"
       >
         <p>
-          <span className="text-5xl font-bold text-red-700">{count}</span>+
+          <span className="text-5xl font-bold text-red-700">{count.toLocaleString()}</span> <span className="text-5xl font-bold text-black-600">+</span>
           <br />
           Students Trust Team Asili
         </p>
@@ -371,6 +381,7 @@ const articles = [
           placeholder="Registration Number"
           value={regNumber}
           onChange={(e) => setRegNumber(e.target.value)}
+          required
           className="border rounded-lg px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-red-600"
         />
         <input
@@ -378,13 +389,40 @@ const articles = [
           placeholder="Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
           className="border rounded-lg px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-red-600"
         />
         <button
           type="submit"
-          className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition"
+          disabled={loading}
+          className={`bg-red-600 text-white px-6 py-2 rounded-lg transition flex items-center justify-center ${
+            loading ? "cursor-not-allowed opacity-70" : "hover:bg-red-700"
+          }`}
         >
-          Register
+          {loading ? (
+            <svg
+              className="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 010 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+              ></path>
+            </svg>
+          ) : (
+            "Register"
+          )}
         </button>
       </form>
 
@@ -405,7 +443,17 @@ const articles = [
           <FaWhatsapp className="hover:text-yellow-300 cursor-pointer" />
         </div>
         <p>© {new Date().getFullYear()} Team Asili | C.U.E.A Elections</p>
-        <p>Made with love by j3ftey</p>
+      <p>
+        Made with love by{" "}
+        <a
+          href="https://wa.me/254115661943" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white underline hover:text-yellow-200"
+        >
+          j3ftey
+        </a>
+      </p>
       </footer>
     </div>
   );
