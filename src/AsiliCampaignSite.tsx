@@ -186,7 +186,7 @@ const articles = [
                 ? 'Core Values'
                 : link === 'vision'
                 ? 'Our Vision'
-                : link === 'articles'
+                : link === 'stand'
                 ? 'Our Stand'
                 : link === 'vote'
                 ? 'Vote Asili'
@@ -320,7 +320,7 @@ const articles = [
       </section>
 
       {/* Articles */}
-    <section id="articles" className="py-16 px-6 bg-white">
+    <section id="stand" className="py-16 px-6 bg-white">
       <h3 className="text-2xl font-bold text-center mb-8 text-red-700">
         Our Stand
       </h3>
