@@ -315,7 +315,7 @@ const articles = [
       {/* Articles */}
     <section id="articles" className="py-16 px-6 bg-white">
       <h3 className="text-2xl font-bold text-center mb-8 text-red-700">
-        Campaign Articles
+        Our Stand
       </h3>
 
       <div className="grid md:grid-cols-2 gap-8">
@@ -449,7 +449,7 @@ const articles = [
           href="https://wa.me/254115661943" 
           target="_blank"
           rel="noopener noreferrer"
-          className="text-aqua underline hover:text-yellow-200"
+          className="text-aqua underline hover:text-aqua-200"
         >
           j3ftey
         </a>
