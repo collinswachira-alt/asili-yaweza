@@ -166,7 +166,7 @@ const articles = [
         }`}
       >
         <div className="flex items-center space-x-3">
-          <img src="/logo.png" alt="University Logo" className="h-10 w-10 rounded-full" />
+          <img src="/logo.png" alt="Asili Logo" className="h-10 w-10 rounded-full" />
           <h1 className="font-bold text-xl">Team Asili</h1>
         </div>
 
@@ -384,7 +384,7 @@ const articles = [
       {/* Vote Section */}
     <section id="vote" className="py-16 px-6 bg-white text-center">
       <h3 className="text-2xl font-bold mb-6 text-red-700 flex items-center justify-center gap-2">
-        <CheckCircle className="text-red-600" /> Vote for Team Asili
+        <CheckCircle className="text-red-600" /> Pre-vote for Team Asili
       </h3>
       <p className="text-gray-700 mb-6">Join the movement and amplify your voice.</p>
 
