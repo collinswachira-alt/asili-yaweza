@@ -172,7 +172,7 @@ const articles = [
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6">
-          {['candidates', 'vision', 'articles', 'vote'].map((link) => (
+          {['candidates', 'values', 'vision', 'articles', 'vote', 'contact'].map((link) => (
             <a
               key={link}
               href={`#${link}`}
@@ -190,7 +190,10 @@ const articles = [
                 ? 'Our Stand'
                 : link === 'vote'
                 ? 'Vote Asili'
-                : link}
+                : link === 'contact'
+                ? 'Reach Out'
+                : link
+                }
             </a>
           ))}
         </nav>
@@ -208,7 +211,7 @@ const articles = [
           animate={{ opacity: 1, y: 0 }}
           className="bg-red-600 text-white flex flex-col space-y-4 p-4 md:hidden mt-[72px]"
         >
-          {['Our Candidates', 'Core Values', 'Our Vision', 'Our Stand', 'Vote Asili'].map((link, idx) => (
+          {['Our Candidates', 'Core Values', 'Our Vision', 'Our Stand', 'Vote Asili', 'Reach Out'].map((link, idx) => (
             <a key={idx} href={`#${link.toLowerCase().split(' ')[1]}`} onClick={() => setMenuOpen(false)}>
               {link}
             </a>
