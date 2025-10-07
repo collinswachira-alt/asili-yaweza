@@ -232,9 +232,16 @@ const articles = [
           animate={{ opacity: 1, y: 0 }}
           className="bg-red-600 text-white flex flex-col space-y-4 p-4 md:hidden mt-[72px]"
         >
-          {['Our Candidates', 'Core Values', 'Our Vision', 'Our Stand', 'Vote Asili', 'Reach Out'].map((link, idx) => (
-            <a key={idx} href={`#${link.toLowerCase().split(' ')[1]}`} onClick={() => setMenuOpen(false)}>
-              {link}
+          {[
+            { label: 'Our Candidates', href: '#candidates' },
+            { label: 'Core Values', href: '#values' },
+            { label: 'Our Vision', href: '#vision' },
+            { label: 'Our Stand', href: '#stand' },
+            { label: 'Vote Asili', href: '#vote' },
+            { label: 'Reach Out', href: '#contact' },
+          ].map((item, idx) => (
+            <a key={idx} href={item.href} onClick={() => setMenuOpen(false)}>
+              {item.label}
             </a>
           ))}
         </motion.nav>
