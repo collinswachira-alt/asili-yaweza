@@ -373,7 +373,7 @@ const articles = [
       <section className="py-16 px-6 bg-red-50 text-center">
         <h3 className="text-2xl font-bold mb-6 text-red-700">Watch Our Campaign</h3>
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {['EWlC0d7efDg', 'wGiYDxUsQlk ', 'wGiYDxUsQlk '].map((id) => (
+          {['EWlC0d7efDg', 'M6MRa52B3vY  ', 'wGiYDxUsQlk '].map((id) => (
             <div key={id} className="aspect-video">
               <iframe
                 className="w-full h-full rounded-2xl shadow-md"
